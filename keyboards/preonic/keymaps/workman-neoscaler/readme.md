@@ -9,6 +9,7 @@ Based on the Preonic keymap and work from dudeofawesome. Developed for Preonic R
     - Workman
     - Dvorak
     - Colemak
+- German diacritics
 - Numpad layer
 - Audio
 

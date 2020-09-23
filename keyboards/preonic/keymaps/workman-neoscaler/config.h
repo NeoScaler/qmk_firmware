@@ -16,6 +16,8 @@
                               }
 #endif
 
+#define UNICODE_SELECTED_MODES UC_LNX, UC_WIN
+
 #define MUSIC_MASK (keycode != KC_NO)
 
 /*

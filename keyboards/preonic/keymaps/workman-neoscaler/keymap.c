@@ -25,7 +25,8 @@ enum preonic_layers {
   _LOWER,
   _RAISE,
   _ADJUST,
-  _NUMPAD
+  _NUMPAD,
+  _GERMAN
 };
 
 enum preonic_keycodes {
@@ -36,6 +37,28 @@ enum preonic_keycodes {
   LOWER,
   RAISE,
   BACKLIT
+};
+
+enum unicode_names {
+    UC_ADIA,
+    UC_ADIA_UP,
+    UC_UDIA,
+    UC_UDIA_UP,
+    UC_ODIA,
+    UC_ODIA_UP,
+    UC_SS,
+    UC_EURO
+};
+
+const uint32_t PROGMEM unicode_map[] = {
+    [UC_ADIA]  = 0x00E4,  // ä
+    [UC_ADIA_UP] = 0x00C4,  // Ä
+    [UC_ODIA] = 0x00f6, // ö
+    [UC_ODIA_UP] = 0x00d6, // Ö
+    [UC_UDIA] = 0x00FC, // ü
+    [UC_UDIA_UP] = 0x00dc, // Ü
+    [UC_SS] = 0x00DF, // ß
+    [UC_EURO] = 0x20AC, // €
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -71,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   M  |   C  |   V  |   K  |   L  |   ,  |   .  |   /  | Enter|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Num  | Ctrl | Alt  | GUI  |Lower |    Space    |Raise | Left | Down |  Up  |Right |
+ * | Ger  | Ctrl | Alt  | GUI  |Lower |    Space    |Raise | Left | Down |  Up  |Right |
  * `-----------------------------------------------------------------------------------'
  */
 [_WORKMAN] = LAYOUT_preonic_1x2uC( \
@@ -79,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,       KC_Q,    KC_D,    KC_R,    KC_W,    KC_B,    KC_J,    KC_F,    KC_U,    KC_P,    KC_SCLN, KC_BSPC, \
   KC_ESC,       KC_A,    KC_S,    KC_H,    KC_T,    KC_G,    KC_Y,    KC_N,    KC_E,    KC_O,    KC_I,    KC_QUOT, \
   KC_LSFT,      KC_Z,    KC_X,    KC_M,    KC_C,    KC_V,    KC_K,    KC_L,    KC_COMM, KC_DOT,  KC_SLSH, RSFT_T(KC_ENT), \
-  TT(_NUMPAD),  KC_LCTL, KC_LALT, KC_LGUI, LOWER,       KC_SPC,       RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT  \
+  TT(_GERMAN),  KC_LCTL, KC_LALT, KC_LGUI, LOWER,       KC_SPC,       RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT  \
 ),
 
 /* Colemak
@@ -206,6 +229,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, KC_NO,   KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, KC_NO,   KC_P4, KC_P5,   KC_P6,   KC_PPLS, KC_NO,   \
   _______, KC_PSLS, KC_PAST, KC_PMNS, KC_PPLS, KC_PENT, KC_NO,   KC_P1, KC_P2,   KC_P3,   KC_PENT, KC_PENT, \
   _______, _______, _______, _______, KC_NO,       _______,      KC_P0, KC_P0,   KC_PDOT, KC_PENT, KC_PEQL  \
+),
+
+/* German Umlaute
+ * ,-----------------------------------------------------------------------------------.
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |   €  |      |      |      |      |  ü/Ü |      |      |      |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |      |  ä/Ä |  ß   |      |      |      |      |      |      |  ö/Ö |      |      |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |             |      |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_GERMAN] = LAYOUT_preonic_1x2uC( \
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+  _______, _______, _______, X(UC_EURO), _______, _______, _______, _______, XP(UC_UDIA, UC_UDIA_UP), _______, _______, _______, \
+  _______, XP(UC_ADIA, UC_ADIA_UP), X(UC_SS),   _______, _______, _______, _______, _______, _______, XP(UC_ODIA, UC_ODIA_UP), _______, _______, \
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+  _______, _______, _______, _______, _______,       _______,    _______, _______, _______, _______, _______  \
 )
 
 
