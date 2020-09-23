@@ -1,5 +1,7 @@
 # Neoscaler's Workman Preonic layout
 
+This layout supports QUERTY, Workman, Colemak, Dvorak layers and is made for use with an US OS keyboard layout. German diacritics are sent via Unicode.
+
 Based on the Preonic keymap and work from dudeofawesome. Developed for Preonic Rev3, but should work for others revisions, too.
 
 ## Features
@@ -9,7 +11,7 @@ Based on the Preonic keymap and work from dudeofawesome. Developed for Preonic R
     - Workman
     - Dvorak
     - Colemak
-- German diacritics
+- German diacritics (sent via Unicode)
 - Numpad layer
 - Audio
 
